@@ -13,7 +13,8 @@ class Profile extends Component
     public $showSavedAlert = false;
     public $showDemoNotification = false;
 
-    public function rules() {
+    public function rules()
+    {
 
         return [
             'user.first_name' => 'max:15',
@@ -27,21 +28,24 @@ class Profile extends Component
         ];
     }
 
-    public function mount() { $this->user = auth()->user(); }
+    public function mount()
+    {
+        $this->user = auth()->user();
+    }
 
     public function save()
     {
-        if(env('IS_DEMO')) {
+        if (env('IS_DEMO')) {
             $this->showDemoNotification = true;
-        }
-        else {
-        $this->validate();
+        } else {
+            $this->validate();
 
-        $this->user->save();
+            $this->user->save();
 
-        $this->showSavedAlert = true;
+            $this->showSavedAlert = true;
         }
     }
+
 
     public function render()
     {
